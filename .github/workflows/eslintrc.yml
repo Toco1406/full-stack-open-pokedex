@@ -13,24 +13,3 @@ jobs:
           node-version: '20'
       - name: log
         run: npm run eslint
-env:
-  browser: true
-  node: true
-  es2022: true
-
-extends:
-  - eslint:recommended
-  - plugin:react/recommended
-
-
-plugins:
-  - react
-
-rules:
-  no-console: off  
-  no-unused-vars: warn  
-  react/prop-types: off
-
-settings:
-  react:
-    version: "21.7"
