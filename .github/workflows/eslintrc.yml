@@ -1,3 +1,9 @@
+name: eslint
+on: 
+  push:
+    branches:
+      - main
+
 root: true
 env:
   browser: true
