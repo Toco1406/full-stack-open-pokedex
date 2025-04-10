@@ -25,14 +25,15 @@ jobs:
   deploy:
     needs: test
     runs-on: ubuntu-latest
-    if: success()  # Only deploy if tests pass
+    if: ${{ success() }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25
+      - uses: actions/setup-node@v4
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          working-directory: ./
-
-
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install
+      - name: Deploy to Vercel
+        run: |
+          npm install -g vercel
+          vercel --prod --token=${{ secrets.PKMN_VERCEL }} --confirm
